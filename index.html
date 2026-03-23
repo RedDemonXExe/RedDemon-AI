@@ -1,48 +1,10 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Universal AI Chat</title>
     
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        gemini: {
-                            bg: '#ffffff',
-                            darkBg: '#131314',
-                            sidebar: '#f8f9fa',
-                            darkSidebar: '#1e1f20',
-                            userBubble: '#f0f4f9',
-                            darkUserBubble: '#2b2c2f',
-                            border: '#e5e7eb',
-                            darkBorder: '#374151'
-                        }
-                    },
-                    typography: {
-                        DEFAULT: {
-                            css: {
-                                maxWidth: 'none',
-                                color: 'inherit',
-                                a: { color: '#3b82f6', '&:hover': { color: '#2563eb' } },
-                                pre: { backgroundColor: '#1e1f20', color: '#e5e7eb', overflowX: 'auto', padding: '1rem', borderRadius: '0.75rem' },
-                                code: { color: '#f43f5e', backgroundColor: 'rgba(150,150,150,0.1)', padding: '0.2rem 0.4rem', borderRadius: '0.25rem', fontWeight: '500' },
-                                'code::before': { content: '""' },
-                                'code::after': { content: '""' }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
     <style>
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -57,16 +19,16 @@
         *:focus { outline: none; }
     </style>
 </head>
-<body class="min-h-screen flex text-gray-900 bg-gemini-bg dark:bg-gemini-darkBg dark:text-gray-100 font-sans transition-colors duration-200 m-0">
+<body class="min-h-screen flex text-gray-900 bg-[#ffffff] dark:bg-[#131314] dark:text-gray-100 font-sans transition-colors duration-200 m-0">
 
-    <div id="loading" class="fixed inset-0 z-[999] bg-white dark:bg-gemini-darkBg flex flex-col items-center justify-center transition-opacity duration-300">
+    <div id="loading" class="fixed inset-0 z-[999] bg-white dark:bg-[#131314] flex flex-col items-center justify-center transition-opacity duration-300">
         <div class="w-10 h-10 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin"></div>
         <p class="mt-4 text-gray-600 dark:text-gray-300 font-medium">Loading App...</p>
     </div>
 
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity" onclick="toggleSidebar()"></div>
 
-    <aside id="sidebar" class="fixed md:sticky top-0 h-screen w-[280px] flex-shrink-0 bg-gemini-sidebar dark:bg-gemini-darkSidebar border-r border-gemini-border dark:border-gemini-darkBorder z-50 transform -translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col">
+    <aside id="sidebar" class="fixed md:sticky top-0 h-screen w-[280px] flex-shrink-0 bg-[#f8f9fa] dark:bg-[#1e1f20] border-r border-[#e5e7eb] dark:border-[#374151] z-50 transform -translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col">
         <div class="p-4 flex items-center justify-between">
             <button onclick="createNewChat()" class="flex-1 bg-white dark:bg-[#2b2c2f] hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-medium border border-gray-200 dark:border-gray-700 rounded-full px-4 py-2.5 flex items-center gap-2 shadow-sm transition-colors">
                 <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
@@ -82,7 +44,7 @@
         <div id="chat-list" class="flex-1 overflow-y-auto px-2 space-y-1">
             </div>
 
-        <div class="p-4 border-t border-gemini-border dark:border-gemini-darkBorder">
+        <div class="p-4 border-t border-[#e5e7eb] dark:border-[#374151]">
             <button onclick="toggleSettings()" class="w-full flex items-center gap-3 px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                 Settings
@@ -91,7 +53,7 @@
     </aside>
 
     <div class="flex-1 flex flex-col min-w-0">
-        <header class="sticky top-0 z-30 bg-gemini-bg/90 dark:bg-gemini-darkBg/90 backdrop-blur-md px-4 py-3 flex items-center justify-between">
+        <header class="sticky top-0 z-30 bg-[#ffffff]/90 dark:bg-[#131314]/90 backdrop-blur-md px-4 py-3 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <button onclick="toggleSidebar()" class="md:hidden p-2 -ml-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -107,8 +69,8 @@
         <main id="messages-container" class="flex-1 w-full max-w-4xl mx-auto p-4 md:p-6 flex flex-col gap-6 pb-10">
             </main>
 
-        <div class="sticky bottom-0 w-full bg-gradient-to-t from-gemini-bg via-gemini-bg to-transparent dark:from-gemini-darkBg dark:via-gemini-darkBg pt-8 pb-6 px-4 z-30">
-            <div class="max-w-3xl mx-auto relative bg-gemini-userBubble dark:bg-gemini-darkUserBubble rounded-3xl border border-transparent dark:border-gray-700 shadow-sm focus-within:ring-1 focus-within:ring-gray-300 dark:focus-within:ring-gray-600 transition-shadow">
+        <div class="sticky bottom-0 w-full bg-gradient-to-t from-[#ffffff] via-[#ffffff] to-transparent dark:from-[#131314] dark:via-[#131314] pt-8 pb-6 px-4 z-30">
+            <div class="max-w-3xl mx-auto relative bg-[#f0f4f9] dark:bg-[#2b2c2f] rounded-3xl border border-transparent dark:border-gray-700 shadow-sm focus-within:ring-1 focus-within:ring-gray-300 dark:focus-within:ring-gray-600 transition-shadow">
                 <textarea id="chat-input" rows="1" placeholder="Ask Universal AI..." class="w-full bg-transparent border-0 resize-none pl-6 pr-14 py-4 text-gray-900 dark:text-gray-100 max-h-[200px] overflow-y-auto m-0"></textarea>
                 <button id="send-btn" onclick="handleSend()" class="absolute right-3 bottom-2.5 p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-40 disabled:hover:bg-transparent transition-colors">
                     <svg class="w-6 h-6 transform rotate-90" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
@@ -145,14 +107,40 @@
         </div>
     </div>
 
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    typography: {
+                        DEFAULT: {
+                            css: {
+                                maxWidth: 'none',
+                                color: 'inherit',
+                                a: { color: '#3b82f6', '&:hover': { color: '#2563eb' } },
+                                pre: { backgroundColor: '#1e1f20', color: '#e5e7eb', overflowX: 'auto', padding: '1rem', borderRadius: '0.75rem' },
+                                code: { color: '#f43f5e', backgroundColor: 'rgba(150,150,150,0.1)', padding: '0.2rem 0.4rem', borderRadius: '0.25rem', fontWeight: '500' },
+                                'code::before': { content: '""' },
+                                'code::after': { content: '""' }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <script>
         // Configuration
-        const DEFAULT_MODEL = 'openai/gpt-oss-120b:free';
+        const DEFAULT_MODEL = 'deepseek/deepseek-r1:free';
         const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
         // State Management
         let appState = {
-            apiKey: 'ai-key@1',
+            apiKey: '',
             model: DEFAULT_MODEL,
             systemPrompt: 'You are a helpful, smart, and concise AI assistant.',
             chats: [],
@@ -160,14 +148,13 @@
             darkMode: false
         };
 
-        // marked.js configuration for safe and accurate rendering
-        marked.setOptions({
-            breaks: true,
-            gfm: true
-        });
-
         // Initialize App
         function init() {
+            // FIX: marked.setOptions was deprecated and removed. marked.use is the correct modern syntax.
+            if (window.marked && marked.use) {
+                marked.use({ breaks: true, gfm: true });
+            }
+
             loadState();
             applyTheme();
 
@@ -373,4 +360,9 @@
                 const editBtn = document.createElement('button');
                 editBtn.className = 'p-1 hover:text-blue-500 transition-colors';
                 editBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>';
-  
+                editBtn.onclick = (e) => renameChat(chat.id, e);
+                
+                // Delete Btn
+                const delBtn = document.createElement('button');
+                delBtn.className = 'p-1 hover:text-red-500 transition-colors';
+                delBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v
