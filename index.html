@@ -147,12 +147,12 @@
 
     <script>
         // Configuration
-        const DEFAULT_MODEL = 'deepseek/deepseek-r1:free';
+        const DEFAULT_MODEL = 'openai/gpt-oss-120b:free';
         const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
         // State Management
         let appState = {
-            apiKey: '',
+            apiKey: 'ai-key@1',
             model: DEFAULT_MODEL,
             systemPrompt: 'You are a helpful, smart, and concise AI assistant.',
             chats: [],
