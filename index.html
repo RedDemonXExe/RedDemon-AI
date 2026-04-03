@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Universal AI</title>
+    <title>RedDemonAI</title>
     
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <script>
@@ -30,9 +30,9 @@
 
     <style>
         /* Custom scrollbar for webkit */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.5); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.5); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(107, 114, 128, 0.8); }
         
         /* Auto-resizing textarea reset */
@@ -40,22 +40,22 @@
         
         /* Prose overrides for better AI formatting */
         .prose pre { background-color: #1f2937 !important; border-radius: 0.5rem; padding: 1rem; overflow-x: auto; }
-        .prose code { color: #ec4899; background: rgba(156, 163, 175, 0.15); padding: 0.2rem 0.4rem; border-radius: 0.25rem; font-weight: normal; }
+        .prose code { color: #ef4444; background: rgba(156, 163, 175, 0.15); padding: 0.2rem 0.4rem; border-radius: 0.25rem; font-weight: normal; }
         .prose pre code { color: #e5e7eb; background: transparent; padding: 0; }
         
         /* Stop tap highlight on mobile */
         * { -webkit-tap-highlight-color: transparent; }
     </style>
 </head>
-<body class="bg-gemini-bg dark:bg-gemini-darkBg text-gray-800 dark:text-gray-200 antialiased m-0 p-0 overflow-hidden selection:bg-blue-200 dark:selection:bg-blue-900">
+<body class="bg-gemini-bg dark:bg-gemini-darkBg text-gray-800 dark:text-gray-200 antialiased m-0 p-0 overflow-hidden selection:bg-red-200 dark:selection:bg-red-900">
 
     <div id="loading" class="fixed inset-0 flex items-center justify-center bg-white dark:bg-gemini-darkBg z-[100] transition-opacity duration-300">
         <div class="flex flex-col items-center space-y-4">
-            <svg class="animate-spin h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <svg class="animate-spin h-8 w-8 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            <div class="text-lg font-medium text-gray-600 dark:text-gray-300">Loading App...</div>
+            <div class="text-lg font-medium text-gray-600 dark:text-gray-300">Summoning RedDemonAI...</div>
         </div>
     </div>
 
@@ -69,7 +69,7 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
                 <button onclick="createNewChat()" class="flex items-center space-x-2 bg-white dark:bg-[#1a1a1c] border border-gray-200 dark:border-gray-700 rounded-full px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors w-full lg:w-auto shadow-sm">
-                    <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                     <span class="font-medium text-sm">New chat</span>
                 </button>
             </div>
@@ -90,42 +90,42 @@
             </div>
         </aside>
 
-        <main class="flex-1 flex flex-col h-full min-w-0 bg-gemini-bg dark:bg-gemini-darkBg relative">
+        <main class="flex-1 flex flex-col h-full min-w-0 bg-gemini-bg dark:bg-gemini-darkBg">
             
             <header class="lg:hidden flex-shrink-0 flex items-center justify-between p-4 bg-gemini-bg dark:bg-gemini-darkBg border-b border-gray-100 dark:border-gray-800 z-10">
                 <div class="flex items-center space-x-3">
                     <button onclick="toggleSidebar()" class="p-2 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
-                    <span class="font-semibold text-lg truncate" id="mobile-header-title">Universal AI</span>
+                    <span class="font-semibold text-lg truncate" id="mobile-header-title">RedDemonAI</span>
                 </div>
-                <button onclick="createNewChat()" class="p-2 -mr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-blue-500">
+                <button onclick="createNewChat()" class="p-2 -mr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-red-600">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                 </button>
             </header>
 
-            <div id="scroll-area" class="flex-1 overflow-y-auto w-full relative scroll-smooth">
-                <div id="messages-container" class="max-w-4xl mx-auto w-full p-4 sm:p-6 pb-40 space-y-6">
+            <div id="scroll-area" class="flex-1 overflow-y-auto p-4 sm:p-6 w-full scroll-smooth">
+                <div id="messages-container" class="max-w-4xl mx-auto space-y-6">
                     </div>
             </div>
 
-            <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-gemini-bg via-gemini-bg to-transparent dark:from-gemini-darkBg dark:via-gemini-darkBg pt-12 pb-4 px-4 sm:px-6 pointer-events-none z-10">
-                <div class="max-w-4xl mx-auto pointer-events-auto">
+            <div class="flex-shrink-0 w-full px-4 sm:px-6 pb-6 pt-2 bg-gemini-bg dark:bg-gemini-darkBg">
+                <div class="max-w-4xl mx-auto">
                     <form id="chat-form" class="relative flex items-end bg-gemini-sidebar dark:bg-gemini-darkSidebar rounded-3xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-md focus-within:ring-1 focus-within:ring-gray-300 dark:focus-within:ring-gray-600 transition-shadow">
                         <textarea 
                             id="message-input" 
                             rows="1" 
                             class="w-full max-h-40 py-4 pl-6 pr-14 bg-transparent border-none focus:ring-0 resize-none text-base outline-none dark:placeholder-gray-400 placeholder-gray-500 leading-relaxed" 
-                            placeholder="Ask me anything..."
+                            placeholder="Ask RedDemonAI anything..."
                             oninput="autoResize(this)"
                             onkeydown="handleKeydown(event)"
                         ></textarea>
-                        <button type="submit" id="send-btn" class="absolute right-3 bottom-3 p-2 rounded-full text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors disabled:opacity-50">
+                        <button type="submit" id="send-btn" class="absolute right-3 bottom-3 p-2 rounded-full text-gray-400 hover:text-red-600 dark:hover:text-red-500 transition-colors disabled:opacity-50">
                             <svg class="w-6 h-6 transform rotate-90" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
                         </button>
                     </form>
                     <div class="text-center mt-2 text-xs text-gray-500 dark:text-gray-400">
-                        AI can make mistakes. Verify important information.
+                        RedDemonAI can make mistakes. Verify important information.
                     </div>
                 </div>
             </div>
@@ -134,28 +134,28 @@
 
     <div id="settings-modal" class="absolute inset-0 bg-black/60 z-[60] hidden flex items-center justify-center p-4">
         <div class="bg-white dark:bg-gemini-darkSidebar rounded-2xl w-full max-w-md p-6 shadow-xl transform transition-all">
-            <h2 class="text-xl font-semibold mb-4">Settings</h2>
+            <h2 class="text-xl font-semibold mb-4">RedDemonAI Settings</h2>
             
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium mb-1">OpenRouter API Key <span class="text-red-500">*</span></label>
-                    <input type="password" id="setting-api-key" class="w-full px-3 py-2 border rounded-lg dark:bg-[#1a1a1c] dark:border-gray-700 outline-none focus:border-blue-500" placeholder="sk-or-v1-...">
+                    <input type="password" id="setting-api-key" class="w-full px-3 py-2 border rounded-lg dark:bg-[#1a1a1c] dark:border-gray-700 outline-none focus:border-red-600" placeholder="sk-or-v1-...">
                 </div>
                 
                 <div>
                     <label class="block text-sm font-medium mb-1">Model ID</label>
-                    <input type="text" id="setting-model" class="w-full px-3 py-2 border rounded-lg dark:bg-[#1a1a1c] dark:border-gray-700 outline-none focus:border-blue-500" placeholder="deepseek/deepseek-r1:free">
+                    <input type="text" id="setting-model" class="w-full px-3 py-2 border rounded-lg dark:bg-[#1a1a1c] dark:border-gray-700 outline-none focus:border-red-600" placeholder="deepseek/deepseek-r1:free">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium mb-1">System Prompt</label>
-                    <textarea id="setting-system" rows="3" class="w-full px-3 py-2 border rounded-lg dark:bg-[#1a1a1c] dark:border-gray-700 outline-none focus:border-blue-500" placeholder="You are a helpful assistant..."></textarea>
+                    <textarea id="setting-system" rows="3" class="w-full px-3 py-2 border rounded-lg dark:bg-[#1a1a1c] dark:border-gray-700 outline-none focus:border-red-600" placeholder="You are a helpful assistant..."></textarea>
                 </div>
             </div>
 
             <div class="mt-6 flex justify-end space-x-3">
                 <button onclick="closeSettings()" class="px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-sm font-medium">Cancel</button>
-                <button onclick="saveSettings()" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors text-sm font-medium">Save Settings</button>
+                <button onclick="saveSettings()" class="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white transition-colors text-sm font-medium">Save Settings</button>
             </div>
         </div>
     </div>
@@ -165,7 +165,7 @@
         const DEFAULT_SETTINGS = {
             apiKey: '',
             model: 'deepseek/deepseek-r1:free',
-            systemPrompt: 'You are a highly capable, concise, and helpful AI assistant.',
+            systemPrompt: 'You are RedDemonAI, a highly capable, concise, and helpful AI assistant.',
             darkMode: window.matchMedia('(prefers-color-scheme: dark)').matches
         };
 
@@ -175,7 +175,6 @@
         let isGenerating = false;
         let abortController = null;
 
-        // Ensure at least one chat exists
         if (chats.length === 0) {
             createNewChat(false);
         } else if (!chats.find(c => c.id === currentChatId)) {
@@ -204,7 +203,6 @@
             renderSidebar();
             loadChat(currentChatId);
             
-            // Remove loader safely
             setTimeout(() => {
                 els.loading.style.opacity = '0';
                 setTimeout(() => {
@@ -253,7 +251,6 @@
             }
         }
 
-        // Fix scroll target to the new scroll-area wrapper
         function scrollToBottom() {
             els.scrollArea.scrollTo({
                 top: els.scrollArea.scrollHeight,
@@ -308,23 +305,26 @@
             renderSidebar();
             
             const chat = chats.find(c => c.id === id);
-            els.mobileHeaderTitle.textContent = chat ? chat.title : 'Universal AI';
+            els.mobileHeaderTitle.textContent = chat ? chat.title : 'RedDemonAI';
             els.messagesContainer.innerHTML = '';
             
             if (chat && chat.messages.length === 0) {
+                // RED THEMED WELCOME MESSAGE WITH GEMINI SPARKLE
                 els.messagesContainer.innerHTML = `
                     <div id="welcome-message" class="flex flex-col items-center justify-center pt-20 text-center space-y-4 opacity-50">
-                        <div class="w-16 h-16 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <div class="w-16 h-16 bg-gradient-to-tr from-red-600 to-red-900 rounded-full flex items-center justify-center shadow-lg">
+                            <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.0003 1.99997C12.0003 1.99997 12.4497 9.0754 19.5251 9.52485C12.4497 9.9743 12.0003 17.0498 12.0003 17.0498C12.0003 17.0498 11.5508 9.9743 4.4754 9.52485C11.5508 9.0754 12.0003 1.99997 12.0003 1.99997Z"/>
+                                <path d="M19.0002 14.9999C19.0002 14.9999 19.2249 18.5376 22.7626 18.7623C19.2249 18.9871 19.0002 22.5248 19.0002 22.5248C19.0002 22.5248 18.7754 18.9871 15.2377 18.7623C18.7754 18.5376 19.0002 14.9999 19.0002 14.9999Z"/>
+                            </svg>
                         </div>
-                        <h2 class="text-2xl font-semibold">How can I help you today?</h2>
+                        <h2 class="text-2xl font-semibold">I am RedDemonAI. How can I help you?</h2>
                     </div>
                 `;
                 return;
             }
 
             chat.messages.forEach(msg => appendMessageUI(msg.role, msg.content));
-            // Slight delay ensures DOM paints before scrolling
             setTimeout(scrollToBottom, 50);
         }
 
@@ -358,7 +358,7 @@
                 <div onclick="loadChat('${chat.id}')" class="group flex items-center justify-between p-3 rounded-xl cursor-pointer transition-colors ${chat.id === currentChatId ? 'bg-white dark:bg-[#282a2c] shadow-sm' : 'hover:bg-gray-200 dark:hover:bg-[#282a2c]'}">
                     <div class="flex items-center space-x-3 overflow-hidden">
                         <svg class="w-4 h-4 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                        <span class="truncate text-sm font-medium ${chat.id === currentChatId ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300'}">${chat.title}</span>
+                        <span class="truncate text-sm font-medium ${chat.id === currentChatId ? 'text-red-600 dark:text-red-500' : 'text-gray-700 dark:text-gray-300'}">${chat.title}</span>
                     </div>
                     <div class="hidden group-hover:flex items-center space-x-1 flex-shrink-0">
                         <button onclick="renameChat('${chat.id}', event)" class="p-1 rounded hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-500"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg></button>
@@ -370,7 +370,6 @@
 
         // --- Messaging Logic ---
         function appendMessageUI(role, content) {
-            // Remove welcome placeholder if it exists
             const welcomeNode = document.getElementById('welcome-message');
             if (welcomeNode) welcomeNode.remove();
 
@@ -384,11 +383,14 @@
                     </div>
                 `;
             } else {
-                // AI Message wrapper
+                // RED THEMED AI BUBBLE WITH GEMINI SPARKLE
                 wrapper.innerHTML = `
                     <div class="flex space-x-4 max-w-full w-full group">
-                        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex-shrink-0 flex items-center justify-center mt-1 shadow-sm">
-                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-red-600 to-red-900 flex-shrink-0 flex items-center justify-center mt-1 shadow-sm">
+                            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.0003 1.99997C12.0003 1.99997 12.4497 9.0754 19.5251 9.52485C12.4497 9.9743 12.0003 17.0498 12.0003 17.0498C12.0003 17.0498 11.5508 9.9743 4.4754 9.52485C11.5508 9.0754 12.0003 1.99997 12.0003 1.99997Z"/>
+                                <path d="M19.0002 14.9999C19.0002 14.9999 19.2249 18.5376 22.7626 18.7623C19.2249 18.9871 19.0002 22.5248 19.0002 22.5248C19.0002 22.5248 18.7754 18.9871 15.2377 18.7623C18.7754 18.5376 19.0002 14.9999 19.0002 14.9999Z"/>
+                            </svg>
                         </div>
                         <div class="flex-1 min-w-0 prose prose-sm md:prose-base dark:prose-invert max-w-none ai-content overflow-x-auto break-words leading-relaxed">
                             ${marked.parse(content)}
@@ -413,27 +415,23 @@
             const content = els.messageInput.value.trim();
             if (!content) return;
 
-            // Reset input UI
             els.messageInput.value = '';
             els.messageInput.style.height = 'auto';
             
             const chat = chats.find(c => c.id === currentChatId);
             if (!chat) return;
 
-            // Auto-generate title if first message
             if (chat.messages.length === 0) {
                 chat.title = content.length > 25 ? content.substring(0, 25) + '...' : content;
                 renderSidebar();
                 els.mobileHeaderTitle.textContent = chat.title;
             }
 
-            // Save user message
             chat.messages.push({ role: 'user', content });
             saveState();
             appendMessageUI('user', content);
             scrollToBottom();
 
-            // Prepare API payload
             const payloadMessages = [
                 { role: 'system', content: settings.systemPrompt },
                 ...chat.messages
@@ -442,7 +440,6 @@
             isGenerating = true;
             els.sendBtn.innerHTML = `<svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
             
-            // Create empty AI message UI for streaming
             const aiMessageWrapper = appendMessageUI('assistant', '');
             const aiContentContainer = aiMessageWrapper.querySelector('.ai-content');
             let aiFullText = "";
@@ -457,7 +454,7 @@
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${cleanApiKey}`,
                         'HTTP-Referer': window.location.href, 
-                        'X-Title': 'Universal AI Chat UI'
+                        'X-Title': 'RedDemonAI'
                     },
                     body: JSON.stringify({
                         model: settings.model,
@@ -483,7 +480,6 @@
                     if (value) {
                         buffer += decoder.decode(value, { stream: true });
                         const lines = buffer.split('\n');
-                        // Keep the last incomplete line in the buffer
                         buffer = lines.pop(); 
 
                         for (const line of lines) {
@@ -500,14 +496,12 @@
                                         scrollToBottom();
                                     }
                                 } catch (err) {
-                                    // Silent catch for partial JSON chunks
                                 }
                             }
                         }
                     }
                 }
 
-                // Push final message to history
                 chat.messages.push({ role: 'assistant', content: aiFullText });
                 saveState();
 
