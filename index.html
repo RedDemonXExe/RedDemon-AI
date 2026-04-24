@@ -176,7 +176,7 @@
             try {
                 const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
                     method: "POST",
-                    headers: { "Authorization": "Bearer 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", "Content-Type": "application/json" },
+                    headers: { "Authorization": "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", "Content-Type": "application/json" },
                     body: JSON.stringify({ model: MODELS[state.model], messages: chat.messages.slice(0,-1), stream: true })
                 });
                 const reader = response.body.getReader();
